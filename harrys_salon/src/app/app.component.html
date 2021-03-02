@@ -1,7 +1,10 @@
 <div>
 
   <mat-toolbar color = "primary" class="navbar"> 
-    <div> Welcome to the {{title}}</div>
+    <a routerLink="/home">
+      <div> Welcome to the {{title}}</div>
+
+    </a>
     <div>
       <button mat-button routerLink="/login">Login</button>
       <button mat-button routerLink="/register">Register</button>

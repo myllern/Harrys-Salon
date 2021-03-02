@@ -34,6 +34,7 @@ import { BookingComponent } from './booking/booking.component';
     BrowserAnimationsModule,
     MaterialModule,
     RouterModule.forRoot([
+      { path: "home", component: HomeComponent },
       { path: "login", component: LoginComponent },
       { path: "register", component: RegisterComponent },
       { path: "booking", component: BookingComponent }
