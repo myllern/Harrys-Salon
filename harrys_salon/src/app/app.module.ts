@@ -11,6 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 import { BookingComponent } from './booking/booking.component';
+import { BookingInputComponent } from './booking/booking-input/booking-input.component';
 
 
 
@@ -24,7 +25,8 @@ import { BookingComponent } from './booking/booking.component';
     RegisterComponent,
     LoginComponent,
     BookingComponent,
-    HomeComponent
+    HomeComponent,
+    BookingInputComponent
   ],
   imports: [
     ReactiveFormsModule,
