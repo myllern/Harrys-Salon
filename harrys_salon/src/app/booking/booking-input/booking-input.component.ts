@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, Output } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-booking-input',
@@ -9,6 +9,8 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 })
 export class BookingInputComponent implements OnInit {
+  @Output() event= new EventEmitter<any>();
+  
 
   form = new FormGroup({
     date: new FormControl(''),
@@ -24,11 +26,17 @@ export class BookingInputComponent implements OnInit {
   ngOnInit(): void {
   };
 
+
+  //notify to parent
   onSubmit() {
     console.log(this.form.controls.date.value,
       this.form.controls.time.value,
       this.form.controls.comment.value
-    )
+    );
+  //Emits 
+    this.event.emit(this.form);
+
+
   };
   toggleChoosenDay() {
     this.isDayChoosen = !this.isDayChoosen;

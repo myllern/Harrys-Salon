@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-booking',
@@ -7,11 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookingComponent implements OnInit {
 
-  hello: string = "hello World";
+  bookingForm = new FormGroup({});
+
+
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  reciveBooking($event: any){
+    console.log($event)
+    this.bookingForm = $event;
   }
 
 }
