@@ -13,6 +13,7 @@ export class BookingInputComponent implements OnInit {
   form = new FormGroup({
     date: new FormControl(''),
     time: new FormControl(''),
+    comment: new FormControl('')
   });
 
   isDayChoosen: boolean = false;
@@ -21,16 +22,15 @@ export class BookingInputComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  }
+  };
 
   onSubmit() {
     console.log(this.form.controls.date.value,
-      this.form.controls.time.value
+      this.form.controls.time.value,
+      this.form.controls.comment.value
     )
-  }
+  };
   toggleChoosenDay() {
     this.isDayChoosen = !this.isDayChoosen;
-  }
-
-
-}
+  };
+};
