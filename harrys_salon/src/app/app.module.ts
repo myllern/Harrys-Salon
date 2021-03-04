@@ -14,13 +14,10 @@ import { BookingComponent } from './booking/booking.component';
 import { BookingInputComponent } from './booking/booking-input/booking-input.component';
 import { LoginInputComponent } from './login/login-input/login-input.component';
 import { RegisterInputComponent } from './register/register-input/register-input.component';
-<<<<<<< HEAD
 import { AngularFireModule} from "@angular/fire"
 import { AngularFirestoreModule} from "@angular/fire/firestore"
 
 import { environment } from 'src/environments/environment';
-=======
->>>>>>> d58d6d1a41ac3e41ed84db7bb6b96e79692cbc5c
 
 @NgModule({
   declarations: [
@@ -33,11 +30,7 @@ import { environment } from 'src/environments/environment';
     BookingInputComponent,
     LoginInputComponent,
     RegisterInputComponent,
-<<<<<<< HEAD
-    
 
-=======
->>>>>>> d58d6d1a41ac3e41ed84db7bb6b96e79692cbc5c
   ],
   imports: [
     ReactiveFormsModule,
