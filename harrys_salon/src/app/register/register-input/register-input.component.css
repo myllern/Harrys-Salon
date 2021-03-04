@@ -1,14 +1,15 @@
-:host{
-    display: block;
-    width: 15em;
-    height: 15em;
+:host {
+  display: block;
+  width: 15em;
+  height: 15em;
 
-    padding: 15em    
+  padding: 15em;
 }
-label, input {
-    display: block;
+label,
+input {
+  display: block;
 }
 
 label {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
