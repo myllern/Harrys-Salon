@@ -14,6 +14,10 @@ import { BookingComponent } from './booking/booking.component';
 import { BookingInputComponent } from './booking/booking-input/booking-input.component';
 import { LoginInputComponent } from './login/login-input/login-input.component';
 import { RegisterInputComponent } from './register/register-input/register-input.component';
+import { AngularFireModule} from "@angular/fire"
+import { AngularFirestoreModule} from "@angular/fire/firestore"
+
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -26,6 +30,8 @@ import { RegisterInputComponent } from './register/register-input/register-input
     BookingInputComponent,
     LoginInputComponent,
     RegisterInputComponent,
+    
+
   ],
   imports: [
     ReactiveFormsModule,
@@ -34,6 +40,8 @@ import { RegisterInputComponent } from './register/register-input/register-input
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
       { path: 'login', component: LoginComponent },

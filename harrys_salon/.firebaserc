@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "edaf90-thehairysalon": {
+      "hosting": {
+        "harrys-salon": [
+          "edaf90-thehairysalon"
+        ]
+      }
+    }
+  }
+}
