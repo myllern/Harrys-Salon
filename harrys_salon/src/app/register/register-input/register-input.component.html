@@ -1,0 +1,31 @@
+<div>
+   
+   
+    <form [formGroup]="form">
+       <h2>Please enter your information below:</h2>
+      
+       <mat-form-field appearance="fill">
+         <mat-label>First Name</mat-label>
+         <textarea matInput required formControlName="firstname"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+         <mat-label>Last Name</mat-label>
+         <textarea matInput required formControlName="lastname"></textarea>
+      </mat-form-field>
+
+       <mat-form-field appearance="fill">
+         <mat-label>User Name</mat-label>
+         <textarea matInput required formControlName="username"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+         <mat-label>Password</mat-label>
+         <textarea matInput required formControlName="password"></textarea>
+      </mat-form-field>
+          
+          
+          <button mat-raised-button (click)="onSubmit()">Register</button>
+          
+       
+    </form>
+ </div>
