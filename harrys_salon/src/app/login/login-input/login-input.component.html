@@ -1,0 +1,24 @@
+<div>
+   
+   
+    <form [formGroup]="form">
+       <h2>Please login:</h2>
+      
+       <mat-form-field appearance="fill">
+         <mat-label>User Name</mat-label>
+         <textarea matInput required formControlName="username"></textarea>
+      </mat-form-field>
+
+   
+
+      <mat-form-field appearance="fill">
+         <mat-label>Password</mat-label>
+         <textarea matInput required formControlName="password"></textarea>
+      </mat-form-field>
+          
+          
+          <button mat-raised-button (click)="onSubmit()">Login</button>
+          
+       
+    </form>
+ </div>

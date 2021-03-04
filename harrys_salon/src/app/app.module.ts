@@ -1,4 +1,4 @@
-import { NgModule,  } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -12,11 +12,8 @@ import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 import { BookingComponent } from './booking/booking.component';
 import { BookingInputComponent } from './booking/booking-input/booking-input.component';
-
-
-
-
-
+import { LoginInputComponent } from './login/login-input/login-input.component';
+import { RegisterInputComponent } from './register/register-input/register-input.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +23,9 @@ import { BookingInputComponent } from './booking/booking-input/booking-input.com
     LoginComponent,
     BookingComponent,
     HomeComponent,
-    BookingInputComponent
+    BookingInputComponent,
+    LoginInputComponent,
+    RegisterInputComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -36,15 +35,13 @@ import { BookingInputComponent } from './booking/booking-input/booking-input.com
     BrowserAnimationsModule,
     MaterialModule,
     RouterModule.forRoot([
-      { path: "home", component: HomeComponent },
-      { path: "login", component: LoginComponent },
-      { path: "register", component: RegisterComponent },
-      { path: "booking", component: BookingComponent }
-    ])
+      { path: 'home', component: HomeComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent },
+      { path: 'booking', component: BookingComponent },
+    ]),
   ],
-  providers: [
-    {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}
-  ],
-  bootstrap: [AppComponent]
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
