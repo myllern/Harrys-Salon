@@ -18,7 +18,14 @@ export class RegisterInputComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+<<<<<<< HEAD
 
+=======
+  hide = true;
+  get passwordInput() {
+    return this.form.controls.password2;
+  }
+>>>>>>> d58d6d1a41ac3e41ed84db7bb6b96e79692cbc5c
   onSubmit() {
     console.log(
       this.form.controls.firstname.value,

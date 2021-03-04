@@ -18,10 +18,17 @@
          <textarea matInput required formControlName="username"></textarea>
       </mat-form-field>
 
+<<<<<<< HEAD
       <mat-form-field appearance="fill">
          <mat-label>Password</mat-label>
          <textarea matInput required formControlName="password"></textarea>
       </mat-form-field>
+=======
+      <mat-form-field>
+         <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
+         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+         </mat-form-field>
+>>>>>>> d58d6d1a41ac3e41ed84db7bb6b96e79692cbc5c
           
           
           <button mat-raised-button (click)="onSubmit()">Register</button>

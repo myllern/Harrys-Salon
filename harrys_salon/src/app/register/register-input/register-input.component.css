@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 :host{
     display: block;
     width: 15em;
@@ -11,4 +12,20 @@ label, input {
 
 label {
     margin-bottom: 20px;
+=======
+:host {
+  display: block;
+  width: 15em;
+  height: 15em;
+
+  padding: 15em;
+}
+label,
+input {
+  display: block;
+}
+
+label {
+  margin-bottom: 20px;
+>>>>>>> d58d6d1a41ac3e41ed84db7bb6b96e79692cbc5c
 }
