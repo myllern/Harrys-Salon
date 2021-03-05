@@ -1,43 +1,42 @@
 <div>
    
-   <div *ngIf="auth.user | async as user; else showLogin">
-      <h1>Logged in!</h1>
+   <div *ngIf="auth.user | async; else showLogin">
+      <form [formGroup]="form">
+         <h2>Picka a date:</h2>
+         <mat-form-field appearance="fill">
+            <mat-label>Choose a date</mat-label>
+            <input matInput required (dateChange)="toggleChoosenDay()" [matDatepicker]="picker" formControlName="date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker  #picker></mat-datepicker>
+         </mat-form-field>
+   
+         
+         <mat-form-field appearance="fill">
+  
+  
+               <mat-label>Select a time</mat-label>
+               <mat-select required formControlName="time"  selected="selected">
+                  <mat-option disabled>Select</mat-option>
+                  <mat-option value=09 >09-10</mat-option>
+                  <mat-option value=10 >10-11</mat-option>
+                  <mat-option value=11>11-12</mat-option>
+                  <mat-option value=12>12-13</mat-option>
+                  <mat-option value=13>13-14</mat-option>
+               </mat-select>
+            </mat-form-field>
+            
+            <mat-form-field appearance="fill">
+               <mat-label>Add Comment</mat-label>
+               <textarea matInput formControlName="comment"></textarea>
+            </mat-form-field>
+            
+            <!--- passing the form to module and indirect to parent-->
+            <button mat-raised-button (click)="onSubmit()" >Select</button>
+            
+         
+      </form>
     </div>
     <ng-template #showLogin>
       <p>Please login.</p>
     </ng-template>
-    <form [formGroup]="form">
-       <h2>Picka a date:</h2>
-       <mat-form-field appearance="fill">
-          <mat-label>Choose a date</mat-label>
-          <input matInput required (dateChange)="toggleChoosenDay()" [matDatepicker]="picker" formControlName="date">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker  #picker></mat-datepicker>
-       </mat-form-field>
- 
-       
-       <mat-form-field appearance="fill">
-
-
-             <mat-label>Select a time</mat-label>
-             <mat-select required formControlName="time"  selected="selected">
-                <mat-option disabled>Select</mat-option>
-                <mat-option value=09 >09-10</mat-option>
-                <mat-option value=10 >10-11</mat-option>
-                <mat-option value=11>11-12</mat-option>
-                <mat-option value=12>12-13</mat-option>
-                <mat-option value=13>13-14</mat-option>
-             </mat-select>
-          </mat-form-field>
-          
-          <mat-form-field appearance="fill">
-             <mat-label>Add Comment</mat-label>
-             <textarea matInput formControlName="comment"></textarea>
-          </mat-form-field>
-          
-          <!--- passing the form to module and indirect to parent-->
-          <button mat-raised-button (click)="onSubmit()" >Select</button>
-          
-       
-    </form>
  </div>

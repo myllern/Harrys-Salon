@@ -1,22 +1,26 @@
 <div>
    
-   
+  <div *ngIf="auth.user | async; else showLogin">
+    <h1>Logged in. Add the code for bookings and settings</h1>
+  </div>
+  <ng-template #showLogin>
     <form [formGroup]="form">
-       <h2>Please login:</h2>
-      
-       <mat-form-field appearance="fill">
-         <mat-label>E-mail</mat-label>
-         <textarea matInput required formControlName="email"></textarea>
-      </mat-form-field>
-          
-      <mat-form-field>
-         <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
-         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-         </mat-form-field>
+      <h2>Please login:</h2>
+    
+      <mat-form-field appearance="fill">
+        <mat-label>E-mail</mat-label>
+        <textarea matInput required formControlName="email"></textarea>
+    </mat-form-field>
+        
+    <mat-form-field>
+        <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </mat-form-field>
 
-         
-          <button mat-raised-button (click)="onSubmit()">Login</button>
-          
-       
-    </form>
+        
+        <button mat-raised-button (click)="onSubmit()">Login</button>
+        
+      
+  </form>
+  </ng-template>
  </div>
