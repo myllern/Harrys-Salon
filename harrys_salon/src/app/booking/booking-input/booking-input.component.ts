@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-booking-input',
@@ -21,7 +22,7 @@ export class BookingInputComponent implements OnInit {
   isDayChoosen: boolean = false;
 
 
-  constructor() { }
+  constructor(public auth: AngularFireAuth) { }
 
   ngOnInit(): void {
   };

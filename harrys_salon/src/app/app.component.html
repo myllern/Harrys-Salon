@@ -8,6 +8,12 @@
     <a routerLink="/home">
       <div> Welcome to the {{title}}</div>
     </a>
+    <div *ngIf="auth.user | async as user; else showLogin">
+      <h1>Logged in</h1>
+    </div>
+    <ng-template #showLogin>
+      <p>Logged out</p>
+    </ng-template>
     <div>
       <button mat-button routerLink="/login">Login</button>
       <button mat-button routerLink="/register">Register</button>
@@ -23,6 +29,7 @@
       <h2 mat-line>Your name from DB is: <b> {{data.name}}</b></h2>
 
     </mat-list-item>
+    <button (click)="logout()">Logout</button>
     <mat-divider></mat-divider>
   </mat-list>
   

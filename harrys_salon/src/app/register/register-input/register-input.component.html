@@ -2,9 +2,14 @@
    
    
     <form [formGroup]="form">
-       <h2>Please enter your information below:</h2>
+      <h2>Please enter your information below:</h2>
       
-       <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill">
+         <mat-label>E-mail</mat-label>
+         <textarea matInput required formControlName="email"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
          <mat-label>First Name</mat-label>
          <textarea matInput required formControlName="firstname"></textarea>
       </mat-form-field>
@@ -13,15 +18,6 @@
          <textarea matInput required formControlName="lastname"></textarea>
       </mat-form-field>
 
-       <mat-form-field appearance="fill">
-         <mat-label>User Name</mat-label>
-         <textarea matInput required formControlName="username"></textarea>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-         <mat-label>Password</mat-label>
-         <textarea matInput required formControlName="password"></textarea>
-      </mat-form-field>
       <mat-form-field>
          <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>

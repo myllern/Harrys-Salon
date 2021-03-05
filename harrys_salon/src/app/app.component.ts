@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
+import firebase from 'firebase/app';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +11,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class AppComponent {
   data:any;
 
-  constructor(private db: AngularFirestore) { };
-
+  constructor(private db: AngularFirestore, public auth: AngularFireAuth) { };
 
   ngOnInit() {
     this.data = this.db.collection('users').doc('JohnDoe').valueChanges()
@@ -20,6 +21,10 @@ export class AppComponent {
 
 
     
+  }
+
+  logout() {
+    this.auth.signOut();
   }
   
   title = 'harrys-salon';

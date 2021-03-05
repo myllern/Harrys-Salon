@@ -1,6 +1,11 @@
 <div>
    
-   
+   <div *ngIf="auth.user | async as user; else showLogin">
+      <h1>Logged in!</h1>
+    </div>
+    <ng-template #showLogin>
+      <p>Please login.</p>
+    </ng-template>
     <form [formGroup]="form">
        <h2>Picka a date:</h2>
        <mat-form-field appearance="fill">
