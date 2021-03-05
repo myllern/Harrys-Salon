@@ -7,14 +7,21 @@ import { AngularFirestore } from '@angular/fire/firestore';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  data:any;
+
   constructor(private db: AngularFirestore) { };
 
 
   ngOnInit() {
-    this.db.collection('users').valueChanges()
-      .subscribe(val => console.log(val));
+    this.data = this.db.collection('users').doc('JohnDoe').valueChanges()
+      .subscribe(val => this.data = val);
+    
+    
 
+
+    
   }
+  
   title = 'harrys-salon';
 }
 

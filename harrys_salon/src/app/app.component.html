@@ -1,8 +1,8 @@
 <div>
 
-  <!---
-    <button mat-button (click)="checkStore()">Check DB</button>
-  -->
+
+  
+
 
   <mat-toolbar color = "primary" class="navbar"> 
     <a routerLink="/home">
@@ -16,6 +16,14 @@
   </mat-toolbar>
 
   <router-outlet></router-outlet>
-  
 
+  <mat-list>
+    <h3 mat-subheader>Nån data:</h3>
+    <mat-list-item>
+      <h2 mat-line>Your name from DB is: <b> {{data.name}}</b></h2>
+
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </mat-list>
+  
 </div>
