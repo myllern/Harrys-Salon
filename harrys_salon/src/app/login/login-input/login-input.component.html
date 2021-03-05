@@ -1,7 +1,10 @@
 <div>
    
   <div *ngIf="auth.user | async; else showLogin">
-    <h1>Logged in. Add the code for bookings and settings</h1>
+    <h1>Bookings:</h1>
+    <div *ngFor="let value of data">
+      {{"Date: " + value.date + " Time:" + value.time + " Comment:" + value.comment}}
+    </div>
   </div>
   <ng-template #showLogin>
     <form [formGroup]="form">

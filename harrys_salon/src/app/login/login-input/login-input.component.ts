@@ -21,10 +21,16 @@ export class LoginInputComponent implements OnInit {
     password: new FormControl(''),
     //password2: new FormControl('', [Validators.required, Validators.min(3)]),
   });
-
+data:any
   constructor(private db: AngularFirestore, public auth: AngularFireAuth) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    //TODO firebase.auth() is not loaded here. get email from somewhere else
+    //let usr = firebase.auth().currentUser?.email
+    let usr = "admin@test.test"
+    this.db.collection("bookings", ref => ref.where("user", "==", usr)).valueChanges()
+    .subscribe(val => {console.log(val);this.data = val;console.log(firebase)});
+  }
   hide = true;
   get passwordInput() { return this.form.controls.password2; } 
   onSubmit() {
@@ -39,9 +45,5 @@ export class LoginInputComponent implements OnInit {
       //TODO Show error to user (wrong password etc)
       console.log(errorMessage);
     });
-    console.log(
-      this.form.controls.email.value,
-      this.form.controls.password.value
-    );
   }
 }
