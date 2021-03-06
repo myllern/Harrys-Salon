@@ -25,14 +25,17 @@ data:any
   constructor(private db: AngularFirestore, public auth: AngularFireAuth) {}
 
   ngOnInit(): void {
-    //TODO firebase.auth() is not loaded here. get email from somewhere else
-    //let usr = firebase.auth().currentUser?.email
-    let usr = "admin@test.test"
-    this.db.collection("bookings", ref => ref.where("user", "==", usr)).valueChanges()
-    .subscribe(val => {console.log(val);this.data = val;console.log(firebase)});
+    this.auth.user.subscribe(user => {
+      if(user) {
+        this.data = this.db.collection("bookings", ref => ref.where("user", "==", user?.email)).valueChanges();
+      }
+    });
   }
+
+
   hide = true;
   get passwordInput() { return this.form.controls.password2; } 
+
   onSubmit() {
     firebase.auth().signInWithEmailAndPassword(this.form.controls.email.value, this.form.controls.password.value)
     .then((userCredential) => {
