@@ -19,11 +19,6 @@
   <router-outlet></router-outlet>
 
   <mat-list>
-    <h3 mat-subheader>Nån data:</h3>
-    <mat-list-item>
-      <h2 mat-line>Your name from DB is: <b> {{data.name}}</b></h2>
-
-    </mat-list-item>
     <div *ngIf="auth.user | async">
       <button (click)="logout()">Logout</button>
     </div>
