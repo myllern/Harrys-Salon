@@ -2,7 +2,6 @@ import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, Output, ɵpat
 import { FormControl, FormGroup } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { FileDetector } from 'selenium-webdriver';
 
 
 @Component({
@@ -16,24 +15,20 @@ export class BookingInputComponent implements OnInit {
   @Output() event = new EventEmitter<any>();
 
 
-  isSlotFree = [
-    { "10": Boolean },
-    { "11": Boolean },
-    { "12": Boolean },
-    { "13": Boolean },
-    { "14": Boolean }
-  ];
+  isSlotFree: any = {
+    "09": true,
+    "10": true,
+    "11": true,
+    "12": true,
+    "13": true,
+  };
+
 
   form = new FormGroup({
     date: new FormControl(''),
     time: new FormControl(''),
     comment: new FormControl('')
   });
-
-  isDayChoosen: Boolean | undefined;
-
-  bookings: any;
-
   constructor(public auth: AngularFireAuth, private db: AngularFirestore) { }
 
   ngOnInit(): void {
@@ -44,16 +39,19 @@ export class BookingInputComponent implements OnInit {
     //Emits 
     this.event.emit(this.form);
 
-
-
-
   };
 
   toggleChoosenDay(choosenDate: any) {
-   this.db.collectionGroup('bookings').valueChanges().subscribe((data:any)=>
-   console.log(data.toDate()));
-  }
 
+    this.db.collectionGroup('bookings').valueChanges().subscribe((data) => {
+      data.forEach((bookingDate: any) => {
+
+        if (bookingDate.date.toDate().toString() === choosenDate.value.toString()) {
+          this.isSlotFree[bookingDate.time] = false;;
+        }
+      });
+    });
+  };
 
 
   isDateChoosen() {
@@ -61,7 +59,7 @@ export class BookingInputComponent implements OnInit {
   };
 
   availableSlots() {
-  
+
 
 
 

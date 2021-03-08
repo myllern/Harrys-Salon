@@ -17,11 +17,11 @@
                <mat-label>Select a time</mat-label>
                <mat-select required formControlName="time"  selected="selected">
                   <mat-option disabled>Select</mat-option>
-                  <mat-option value=09 >09-10</mat-option>
-                  <mat-option value=10 >10-11</mat-option>
-                  <mat-option value=11>11-12</mat-option>
-                  <mat-option value=12>12-13</mat-option>
-                  <mat-option value=13>13-14</mat-option>
+                  <mat-option *ngIf="isSlotFree['09']" value=09 >09-10</mat-option>
+                  <mat-option *ngIf="isSlotFree['10']" value=10 >10-11</mat-option>
+                  <mat-option *ngIf="isSlotFree['11']" value=11>11-12</mat-option>
+                  <mat-option *ngIf="isSlotFree['12']" value=12>12-13</mat-option>
+                  <mat-option *ngIf="isSlotFree['13']" value=13>13-14</mat-option>
                </mat-select>
             </mat-form-field>
             

@@ -14,9 +14,6 @@ export class BookingComponent implements OnInit {
   bookingForm = new FormGroup({});
 
   dag: Date | undefined;
-
-
-
   constructor(private db: AngularFirestore, public auth: AngularFireAuth) { }
 
   ngOnInit(): void {
