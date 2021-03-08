@@ -1,0 +1,43 @@
+<div *ngIf="auth.user | async; else notLoggedIn">
+    <h1>Bookings:</h1>
+    <div *ngFor="let value of data | async">
+        <h2>
+            {{"Date: " + (value.date.toDate() | date: 'mediumDate') + " Time:" + value.time + "-" + (+value.time + 1) + " Comment:" + value.comment}} 
+            <button mat-raised-button color="warn" (click)="deleteBooking(value)"><i class="material-icons">delete</i></button>
+        </h2>
+    </div>
+    <div>
+        <h1>Account settings:</h1>
+            <h2>Please enter your information below:</h2>
+            <form [formGroup]="form">   
+            <mat-form-field appearance="fill">
+               <mat-label>E-mail</mat-label>
+               <textarea matInput formControlName="email"></textarea>
+            </mat-form-field>
+            <button mat-raised-button (click)="changeEmail()">Change email</button>
+      
+            <mat-form-field appearance="fill">
+               <mat-label>First Name</mat-label>
+               <textarea matInput formControlName="firstname"></textarea>
+            </mat-form-field>
+            <button mat-raised-button (click)="changeFirstName()">Change firstname</button>
+
+            <mat-form-field appearance="fill">
+               <mat-label>Last Name</mat-label>
+               <textarea matInput formControlName="lastname"></textarea>
+            </mat-form-field>
+            <button mat-raised-button (click)="changeLastName()">Change lastname</button>
+      
+            <mat-form-field>
+               <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password">
+               <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </mat-form-field>    
+            <button mat-raised-button (click)="changePassword()">Change password</button>
+            </form>
+             
+        
+    </div>
+</div>
+<ng-template #notLoggedIn>
+    <h1>Please log in!</h1>
+</ng-template>

@@ -18,6 +18,7 @@ import { AngularFireModule} from "@angular/fire"
 import { AngularFirestoreModule} from "@angular/fire/firestore"
 
 import { environment } from 'src/environments/environment';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { environment } from 'src/environments/environment';
     BookingInputComponent,
     LoginInputComponent,
     RegisterInputComponent,
+    AccountComponent,
 
   ],
   imports: [
@@ -46,6 +48,7 @@ import { environment } from 'src/environments/environment';
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'booking', component: BookingComponent },
+      { path: 'account', component: AccountComponent }
     ]),
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
