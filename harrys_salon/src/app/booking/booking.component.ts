@@ -13,6 +13,8 @@ export class BookingComponent implements OnInit {
 
   bookingForm = new FormGroup({});
 
+  dag: Date | undefined;
+
 
 
   constructor(private db: AngularFirestore, public auth: AngularFireAuth) { }
@@ -21,11 +23,14 @@ export class BookingComponent implements OnInit {
   }
 
   reciveBooking($event: any){
-    console.log($event);
+    //console.log($event);
     this.bookingForm = $event;
-    let data = this.bookingForm.value;
-    data.user = firebase.auth().currentUser?.email;
-    const res = this.db.collection('bookings').doc().set(data);
+    
+   // console.log(this.bookingForm.value);
+    let dag = this.bookingForm.value;
+    
+    dag.user = firebase.auth().currentUser?.email;
+    const res = this.db.collection('bookings').doc().set(dag);
   }
 
 }
