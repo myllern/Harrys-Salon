@@ -83,24 +83,21 @@ export class AccountComponent implements OnInit {
 
   changeEmail(){
     let currUser = firebase.auth().currentUser;
-    
     if(currUser !== null){
       let email = currUser.email; 
+      currUser.updateEmail(this.form.controls.email.value);
       if(email !== null) {
         this.db.collectionGroup('users').valueChanges().subscribe((data) => {
           data.forEach((user: any) => {
             if(user.email == email){
               this.db.collection("users").doc(user.email).delete();
               user.email = this.form.controls.email.value;
-              console.log(user);
               this.db.collection("users").doc(user.email).set(user);
             }
           });
         });
-        
       } 
     }
-    currUser?.updateEmail(this.form.controls.email.value);
   }
 
   changeFirstName(){
@@ -139,9 +136,9 @@ export class AccountComponent implements OnInit {
 
   changePassword(){
     var currUser = firebase.auth().currentUser;
-    currUser?.updatePassword(this.form.controls.password.value);
     if(currUser !== null){
-      let email = currUser.email; 
+      let email = currUser.email;
+      currUser.updatePassword(this.form.controls.password.value); 
       if(email !== null) {
         this.db.collectionGroup('users').valueChanges().subscribe((data) => {
           data.forEach((user: any) => {
