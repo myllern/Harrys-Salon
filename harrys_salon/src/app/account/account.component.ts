@@ -1,12 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, DocumentSnapshot } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase/app';
 import {
-  FormBuilder,
   FormControl,
   FormGroup,
-  Validators,
 } from '@angular/forms';
 
 @Component({
@@ -84,23 +82,72 @@ export class AccountComponent implements OnInit {
   }
 
   changeEmail(){
-    var user = firebase.auth().currentUser;
-    user?.updateEmail(this.form.controls.email.value).then( function(){
-      console.log("success");
-    });
+    let currUser = firebase.auth().currentUser;
+    currUser?.updateEmail(this.form.controls.email.value);
+    if(currUser !== null){
+      let email = currUser.email; 
+      if(email !== null) {
+        this.db.collectionGroup('users').valueChanges().subscribe((data) => {
+          data.forEach((user: any) => {
+            if(user.email = email){
+              user.email = this.form.controls.email.value;
+              this.db.collection("users").doc(email).set(user);
+            }
+          });
+        });
+      } 
+    }
   }
 
   changeFirstName(){
-    
+    let currUser = firebase.auth().currentUser;
+    if(currUser !== null){
+      let email = currUser.email; 
+      if(email !== null) {
+        this.db.collectionGroup('users').valueChanges().subscribe((data) => {
+          data.forEach((user: any) => {
+            if(user.email = email){
+              user.firstname = this.form.controls.firstname.value;
+              this.db.collection("users").doc(email).set(user);
+            }
+          });
+        });
+      } 
+    }
   }
 
   changeLastName(){
-    
+    let currUser = firebase.auth().currentUser;
+    if(currUser !== null){
+      let email = currUser.email; 
+      if(email !== null) {
+        this.db.collectionGroup('users').valueChanges().subscribe((data) => {
+          data.forEach((user: any) => {
+            if(user.email = email){
+              user.lastname = this.form.controls.lastname.value;
+              this.db.collection("users").doc(email).set(user);
+            }
+          });
+        });
+      } 
+    }
   }
 
   changePassword(){
-    var user = firebase.auth().currentUser;
-    user?.updatePassword(this.form.controls.password.value);
+    var currUser = firebase.auth().currentUser;
+    currUser?.updatePassword(this.form.controls.password.value);
+    if(currUser !== null){
+      let email = currUser.email; 
+      if(email !== null) {
+        this.db.collectionGroup('users').valueChanges().subscribe((data) => {
+          data.forEach((user: any) => {
+            if(user.email = email){
+              user.password = this.form.controls.password.value;
+              this.db.collection("users").doc(email).set(user);
+            }
+          });
+        });
+      }  
+    }
   }
-
 }
