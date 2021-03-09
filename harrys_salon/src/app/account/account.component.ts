@@ -83,20 +83,24 @@ export class AccountComponent implements OnInit {
 
   changeEmail(){
     let currUser = firebase.auth().currentUser;
-    currUser?.updateEmail(this.form.controls.email.value);
+    
     if(currUser !== null){
       let email = currUser.email; 
       if(email !== null) {
         this.db.collectionGroup('users').valueChanges().subscribe((data) => {
           data.forEach((user: any) => {
             if(user.email == email){
+              this.db.collection("users").doc(user.email).delete();
               user.email = this.form.controls.email.value;
+              console.log(user);
               this.db.collection("users").doc(user.email).set(user);
             }
           });
         });
+        
       } 
     }
+    currUser?.updateEmail(this.form.controls.email.value);
   }
 
   changeFirstName(){
