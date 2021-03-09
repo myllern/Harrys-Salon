@@ -89,9 +89,9 @@ export class AccountComponent implements OnInit {
       if(email !== null) {
         this.db.collectionGroup('users').valueChanges().subscribe((data) => {
           data.forEach((user: any) => {
-            if(user.email = email){
+            if(user.email == email){
               user.email = this.form.controls.email.value;
-              this.db.collection("users").doc(email).set(user);
+              this.db.collection("users").doc(user.email).set(user);
             }
           });
         });
@@ -106,9 +106,9 @@ export class AccountComponent implements OnInit {
       if(email !== null) {
         this.db.collectionGroup('users').valueChanges().subscribe((data) => {
           data.forEach((user: any) => {
-            if(user.email = email){
+            if(user.email == email){
               user.firstname = this.form.controls.firstname.value;
-              this.db.collection("users").doc(email).set(user);
+              this.db.collection("users").doc(user.email).set(user);
             }
           });
         });
@@ -123,9 +123,9 @@ export class AccountComponent implements OnInit {
       if(email !== null) {
         this.db.collectionGroup('users').valueChanges().subscribe((data) => {
           data.forEach((user: any) => {
-            if(user.email = email){
+            if(user.email == email){
               user.lastname = this.form.controls.lastname.value;
-              this.db.collection("users").doc(email).set(user);
+              this.db.collection("users").doc(user.email).set(user);
             }
           });
         });
@@ -141,9 +141,9 @@ export class AccountComponent implements OnInit {
       if(email !== null) {
         this.db.collectionGroup('users').valueChanges().subscribe((data) => {
           data.forEach((user: any) => {
-            if(user.email = email){
+            if(user.email == email){
               user.password = this.form.controls.password.value;
-              this.db.collection("users").doc(email).set(user);
+              this.db.collection("users").doc(user.email).set(user);
             }
           });
         });
