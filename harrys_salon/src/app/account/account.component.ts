@@ -16,6 +16,7 @@ import {
 export class AccountComponent implements OnInit {
 
   data:any;
+  user:any;
 
   hide = true;
 
@@ -33,6 +34,7 @@ export class AccountComponent implements OnInit {
     this.auth.user.subscribe(user => {
       if(user) {
         this.data = this.db.collection("bookings", ref => ref.where("user", "==", user?.email)).valueChanges();
+        this.db.collection("users", ref => ref.where("email", "==", user?.email)).valueChanges().subscribe(x => this.user = x[0]);
       }
     });
   }
@@ -84,71 +86,28 @@ export class AccountComponent implements OnInit {
   changeEmail(){
     let currUser = firebase.auth().currentUser;
     if(currUser !== null){
-      let email = currUser.email; 
-      currUser.updateEmail(this.form.controls.email.value);
-      if(email !== null) {
-        this.db.collectionGroup('users').valueChanges().subscribe((data) => {
-          data.forEach((user: any) => {
-            if(user.email == email){
-              this.db.collection("users").doc(user.email).delete();
-              user.email = this.form.controls.email.value;
-              this.db.collection("users").doc(user.email).set(user);
-            }
-          });
-        });
-      } 
+      //Can fail. Need to tell user if it does
+      currUser.updateEmail(this.form.controls.email.value)
+      .then(() => this.db.collection("users").doc(this.user.id).update({"email": this.form.controls.email.value}))
+      .catch(error => console.log(error));
     }
   }
 
   changeFirstName(){
-    let currUser = firebase.auth().currentUser;
-    if(currUser !== null){
-      let email = currUser.email; 
-      if(email !== null) {
-        this.db.collectionGroup('users').valueChanges().subscribe((data) => {
-          data.forEach((user: any) => {
-            if(user.email == email){
-              user.firstname = this.form.controls.firstname.value;
-              this.db.collection("users").doc(user.email).set(user);
-            }
-          });
-        });
-      } 
-    }
+    this.db.collection("users").doc(this.user.id).update({"firstname": this.form.controls.firstname.value});
   }
 
   changeLastName(){
-    let currUser = firebase.auth().currentUser;
-    if(currUser !== null){
-      let email = currUser.email; 
-      if(email !== null) {
-        this.db.collectionGroup('users').valueChanges().subscribe((data) => {
-          data.forEach((user: any) => {
-            if(user.email == email){
-              user.lastname = this.form.controls.lastname.value;
-              this.db.collection("users").doc(user.email).set(user);
-            }
-          });
-        });
-      } 
-    }
+    this.db.collection("users").doc(this.user.id).update({"lastname": this.form.controls.lastname.value});
   }
 
   changePassword(){
-    var currUser = firebase.auth().currentUser;
+    let currUser = firebase.auth().currentUser;
     if(currUser !== null){
-      let email = currUser.email;
-      currUser.updatePassword(this.form.controls.password.value); 
-      if(email !== null) {
-        this.db.collectionGroup('users').valueChanges().subscribe((data) => {
-          data.forEach((user: any) => {
-            if(user.email == email){
-              user.password = this.form.controls.password.value;
-              this.db.collection("users").doc(user.email).set(user);
-            }
-          });
-        });
-      }  
+      //Can fail because of weak pw or need recent logon. Need to tell user if it does
+      currUser.updatePassword(this.form.controls.password.value)
+      .then(() => this.db.collection("users").doc(this.user.id).update({"password": this.form.controls.password.value}))
+      .catch(error => console.log(error));
     }
   }
 }
