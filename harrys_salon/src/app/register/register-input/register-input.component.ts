@@ -28,7 +28,8 @@ export class RegisterInputComponent implements OnInit {
   }
   
   async onSubmit() {
-    const data = {
+    let data = {
+      id: "",
       isAdmin: false,
       email: this.form.controls.email.value,
       firstname: this.form.controls.firstname.value,
@@ -39,8 +40,9 @@ export class RegisterInputComponent implements OnInit {
     firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
     .then((userCredential) => {
       var user = userCredential.user;
-      console.log(user);
-      const res = this.db.collection('users').doc(data.email).set(data);
+      const res = this.db.collection('users').doc().ref;
+      data['id'] = res.id;
+      this.db.collection('users').doc(res.id).set(data);
     })
     .catch((error) => {
       var errorCode = error.code;
