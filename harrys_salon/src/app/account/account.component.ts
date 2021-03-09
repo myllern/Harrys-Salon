@@ -70,7 +70,6 @@ export class AccountComponent implements OnInit {
     if(currUser !== null){
       //Can fail because of weak pw or need recent logon. Need to tell user if it does
       currUser.updatePassword(this.form.controls.password.value)
-      .then(() => this.db.collection("users").doc(this.user.id).update({"password": this.form.controls.password.value}))
       .catch(error => console.log(error));
     }
   }

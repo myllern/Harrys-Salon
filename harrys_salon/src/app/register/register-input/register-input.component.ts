@@ -33,11 +33,10 @@ export class RegisterInputComponent implements OnInit {
       isAdmin: false,
       email: this.form.controls.email.value,
       firstname: this.form.controls.firstname.value,
-      lastname: this.form.controls.lastname.value,
-      password: this.form.controls.password.value
+      lastname: this.form.controls.lastname.value
     };
 
-    firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
+    firebase.auth().createUserWithEmailAndPassword(data.email, this.form.controls.password.value)
     .then((userCredential) => {
       var user = userCredential.user;
       const res = this.db.collection('users').doc().ref;
