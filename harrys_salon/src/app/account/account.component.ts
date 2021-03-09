@@ -44,47 +44,7 @@ export class AccountComponent implements OnInit {
   }
 
   deleteBooking(value: any){
-    let dateData = this.db.collection("bookings", ref => ref.where("date", "==", value.date)).get();
-    let dateDocsID:string[] = [];
-    dateData.forEach(val => {
-      val.docs.forEach(doc => {
-       dateDocsID.push(doc.id);
-      });
-    });
-    console.log(dateDocsID);
-    let timeData = this.db.collection("bookings", ref => ref.where("time", "==",value.time)).get();
-    let timeDocsID: string[] = [];
-    timeData.forEach(val => {
-      val.docs.forEach(doc => {
-       timeDocsID.push(doc.id);
-      });
-    });
-    console.log(timeDocsID);
-    let userDocsID: string[] = []; 
-    this.auth.user.subscribe(user => {
-      this.db.collection("bookings", ref => ref.where("user", "==", user?.email)).get().forEach(val => {
-        val.docs.forEach(doc => {
-         userDocsID.push(doc.id);
-        });
-      });
-    });
-    console.log(userDocsID);
-    console.log("im before the loop" + " " + dateDocsID.length);
-
-    for(let i = 0; i < dateDocsID.length; i++){
-      console.log(dateDocsID[i]);
-    }
-    userDocsID.forEach( s => {
-      console.log("im here");
-        if(timeDocsID.indexOf(s) !== -1 && dateDocsID.indexOf(s) !== -1){
-          this.db.collection("bookings").doc(s).delete().then(() => {
-            console.log("Document successfully deleted!");
-        }).catch((error) => {
-            console.error("Error removing document: ", error);
-        });
-        }
-    }
-    );
+    this.db.collection("bookings").doc(value.id).delete();
   }
 
   changeEmail(){

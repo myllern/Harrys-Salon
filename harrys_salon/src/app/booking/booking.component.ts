@@ -33,7 +33,9 @@ export class BookingComponent implements OnInit {
     let dag = this.bookingForm.value;
     
     dag.user = this.user.id;
-    const res = this.db.collection('bookings').doc().set(dag);
+    const res = this.db.collection('bookings').doc().ref;
+    dag['id'] = res.id;
+    this.db.collection('bookings').doc(res.id).set(dag)
   }
 
 }
