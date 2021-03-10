@@ -25,18 +25,23 @@ export class BookingInputComponent implements OnInit {
   };
 
 
+  chosenDresser: any;
+  hairDressers: any;
 
-  hairDressersArray:any[] = new Array();
 
   form = new FormGroup({
     date: new FormControl(''),
     time: new FormControl(''),
     comment: new FormControl(''),
-    hairDressers: new FormControl('')
+    hairdresser: new FormControl('')
   });
   constructor(public auth: AngularFireAuth, private db: AngularFirestore) { }
 
   ngOnInit(): void {
+
+    this.db.collectionGroup('hairdressers').valueChanges().subscribe((data) => {
+      this.hairDressers = data;
+    });
   };
 
   //notify to parent
@@ -47,21 +52,28 @@ export class BookingInputComponent implements OnInit {
   };
 
 
-  toggleChoosenDay(choosenDate: any) {
 
-    this.db.collectionGroup('hairdressers').valueChanges().subscribe((data) => {
-      this.hairDressersArray = data;
-    });
+
+  onBookChange(chosenDresser: any) {
+    this.chosenDresser = chosenDresser.value;
+  }
+
+  toggleChosenDay(chosenDate: any) {
+
 
     this.db.collectionGroup('bookings').valueChanges().subscribe((data) => {
       data.forEach((bookingDate: any) => {
-        if (bookingDate.date.toDate().toString() === choosenDate.value.toString()) {
+
+
+
+
+        if ((bookingDate.date.toDate().toString() === chosenDate.value.toString()) && (this.chosenDresser === bookingDate.hairdresser)) {
           this.isSlotFree[bookingDate.time] = false;;
+
         }
       });
     });
 
-    console.log(this.hairDressersArray);
 
   };
 

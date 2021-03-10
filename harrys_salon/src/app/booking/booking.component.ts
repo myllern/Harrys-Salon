@@ -12,17 +12,11 @@ import firebase from 'firebase/app';
 export class BookingComponent implements OnInit {
 
   bookingForm = new FormGroup({});
-  user:any;
 
   dag: Date | undefined;
   constructor(private db: AngularFirestore, public auth: AngularFireAuth) { }
 
   ngOnInit(): void {
-    this.auth.user.subscribe(user => {
-      if(user) {
-        this.db.collection("users", ref => ref.where("email", "==", user?.email)).valueChanges().subscribe(x => this.user = x[0]);
-      }
-    });
   }
 
   reciveBooking($event: any){
@@ -32,12 +26,9 @@ export class BookingComponent implements OnInit {
    // console.log(this.bookingForm.value);
     let dag = this.bookingForm.value;
 
+    dag.user = firebase.auth().currentUser?.email;
 
-    
-    dag.user = this.user.id;
-    const res = this.db.collection('bookings').doc().ref;
-    dag['id'] = res.id;
-    this.db.collection('bookings').doc(res.id).set(dag)
+    const res = this.db.collection('bookings').doc().set(dag);
   }
 
 }
