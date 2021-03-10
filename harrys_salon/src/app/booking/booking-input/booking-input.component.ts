@@ -51,21 +51,23 @@ export class BookingInputComponent implements OnInit {
 
   };
 
-
-
-
   onBookChange(chosenDresser: any) {
     this.chosenDresser = chosenDresser.value;
   }
 
   toggleChosenDay(chosenDate: any) {
+    this.isSlotFree = {
+      "09": true,
+      "10": true,
+      "11": true,
+      "12": true,
+      "13": true,
+    };
+    
 
 
     this.db.collectionGroup('bookings').valueChanges().subscribe((data) => {
       data.forEach((bookingDate: any) => {
-
-
-
 
         if ((bookingDate.date.toDate().toString() === chosenDate.value.toString()) && (this.chosenDresser === bookingDate.hairdresser)) {
           this.isSlotFree[bookingDate.time] = false;;
