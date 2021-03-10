@@ -25,8 +25,9 @@ export class BookingComponent implements OnInit {
     
    // console.log(this.bookingForm.value);
     let dag = this.bookingForm.value;
-    
+
     dag.user = firebase.auth().currentUser?.email;
+
     const res = this.db.collection('bookings').doc().set(dag);
   }
 

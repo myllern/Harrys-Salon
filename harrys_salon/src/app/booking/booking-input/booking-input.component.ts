@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, Output, ɵpat
 import { FormControl, FormGroup } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { ContentObserver } from '@angular/cdk/observers';
 
 
 @Component({
@@ -24,10 +25,14 @@ export class BookingInputComponent implements OnInit {
   };
 
 
+
+  hairDressersArray:any[] = new Array();
+
   form = new FormGroup({
     date: new FormControl(''),
     time: new FormControl(''),
-    comment: new FormControl('')
+    comment: new FormControl(''),
+    hairDressers: new FormControl('')
   });
   constructor(public auth: AngularFireAuth, private db: AngularFirestore) { }
 
@@ -41,27 +46,23 @@ export class BookingInputComponent implements OnInit {
 
   };
 
+
   toggleChoosenDay(choosenDate: any) {
+
+    this.db.collectionGroup('hairdressers').valueChanges().subscribe((data) => {
+      this.hairDressersArray = data;
+    });
 
     this.db.collectionGroup('bookings').valueChanges().subscribe((data) => {
       data.forEach((bookingDate: any) => {
-
         if (bookingDate.date.toDate().toString() === choosenDate.value.toString()) {
           this.isSlotFree[bookingDate.time] = false;;
         }
       });
     });
+
+    console.log(this.hairDressersArray);
+
   };
 
-
-  isDateChoosen() {
-    return this.isDateChoosen;
-  };
-
-  availableSlots() {
-
-
-
-
-  }
 };

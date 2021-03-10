@@ -10,12 +10,12 @@
             <mat-datepicker #picker></mat-datepicker>
          </mat-form-field>
 
+
+
          
          <mat-form-field appearance="fill">
-  
-  
                <mat-label>Select a time</mat-label>
-               <mat-select required formControlName="time"  selected="selected">
+               <mat-select name="food"  formControlName="time"  selected="selected" required>
                   <mat-option disabled>Select</mat-option>
                   <mat-option *ngIf="isSlotFree['09']" value=09 >09-10</mat-option>
                   <mat-option *ngIf="isSlotFree['10']" value=10 >10-11</mat-option>
@@ -35,6 +35,8 @@
             
          
       </form>
+
+
     </div>
     <ng-template #showLogin>
       <p>Please login.</p>
