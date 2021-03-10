@@ -31,15 +31,15 @@ export class AccountComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.data = this.db.collection("bookings", ref => ref.where("user", "==", "asdasd")).valueChanges();
     this.auth.user.subscribe(user => {
       if(user) {
         this.db.collection("users", ref => ref.where("email", "==", user?.email)).valueChanges().subscribe(x => {
           this.user = x[0];
+          this.data = this.db.collection("bookings", ref => ref.where("user", "==", this.user.id)).valueChanges();
         });
-        this.data = this.db.collection("bookings", ref => ref.where("user", "==", user?.email)).valueChanges();
       }
     });
-    console.log(this.data);
   }
 
   deleteBooking(value: any){
