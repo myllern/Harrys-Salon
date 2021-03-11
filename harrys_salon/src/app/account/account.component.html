@@ -1,10 +1,20 @@
 <div *ngIf="auth.user | async; else notLoggedIn">
     <h1>Bookings:</h1>
     <div *ngFor="let value of data | async">
-        <h2>
-            {{"Date: " + (value.date.toDate() | date: 'mediumDate') + " Time: " + value.time + "-" + (+value.time + 1) + " Comment: " + value.comment + " With: " + value.hairdresser}} 
-            <button mat-raised-button color="warn" (click)="deleteBooking(value)"><i class="material-icons">delete</i></button>
-        </h2>
+        <div *ngIf="checkDate(value.date.toDate())">
+            <h2>
+                {{"Date: " + (value.date.toDate() | date: 'mediumDate') + " Time: " + value.time + "-" + (+value.time + 1) + " Comment: " + value.comment + " With: " + value.hairdresser}} 
+                <button mat-raised-button color="warn" (click)="deleteBooking(value)"><i class="material-icons">delete</i></button>
+            </h2>
+        </div>
+    </div>
+    <h1>Old Bookings:</h1>
+    <div *ngFor="let value of data | async">
+        <div *ngIf="!checkDate(value.date.toDate())">
+            <h2>
+                {{"Date: " + (value.date.toDate() | date: 'mediumDate') + " Time: " + value.time + "-" + (+value.time + 1) + " Comment: " + value.comment + " With: " + value.hairdresser}}
+            </h2>
+        </div>
     </div>
     <div>
         <h1>Account settings:</h1>
