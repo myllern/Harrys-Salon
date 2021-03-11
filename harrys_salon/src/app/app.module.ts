@@ -15,10 +15,16 @@ import { BookingInputComponent } from './booking/booking-input/booking-input.com
 import { LoginInputComponent } from './login/login-input/login-input.component';
 import { RegisterInputComponent } from './register/register-input/register-input.component';
 import { AngularFireModule} from "@angular/fire"
-import { AngularFirestoreModule} from "@angular/fire/firestore"
+import { AngularFirestoreModule} from "@angular/fire/firestore";
+
 
 import { environment } from 'src/environments/environment';
 import { AccountComponent } from './account/account.component';
+import { AdminComponent } from './admin/admin.component';
+import { UserTableComponent } from './admin/user-table/user-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -32,6 +38,8 @@ import { AccountComponent } from './account/account.component';
     LoginInputComponent,
     RegisterInputComponent,
     AccountComponent,
+    AdminComponent,
+    UserTableComponent
 
   ],
   imports: [
@@ -48,8 +56,12 @@ import { AccountComponent } from './account/account.component';
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'booking', component: BookingComponent },
-      { path: 'account', component: AccountComponent }
+      { path: 'account', component: AccountComponent },
+      { path: 'admin', component: UserTableComponent }
     ]),
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
   bootstrap: [AppComponent],

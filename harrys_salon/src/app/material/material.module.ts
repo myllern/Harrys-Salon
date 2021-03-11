@@ -21,6 +21,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 
 
@@ -46,7 +47,12 @@ const material = [
   MatFormFieldModule,
   MatNativeDateModule,
   MatSelectModule,
-  MatButtonToggleModule
+  MatButtonToggleModule,
+  MatIconModule,
+  MatPaginatorModule,
+  MatTableModule,
+  MatDialogModule,
+
 ]
 
 @NgModule({
