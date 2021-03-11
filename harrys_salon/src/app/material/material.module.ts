@@ -22,6 +22,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -52,7 +53,7 @@ const material = [
   MatPaginatorModule,
   MatTableModule,
   MatDialogModule,
-
+  MatSnackBarModule
 ]
 
 @NgModule({
