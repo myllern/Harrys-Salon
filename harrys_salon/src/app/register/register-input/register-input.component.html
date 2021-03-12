@@ -21,10 +21,14 @@
       <mat-form-field>
          <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-         </mat-form-field>
+      </mat-form-field>
+
+      <mat-checkbox formControlName="isAdmin">
+         <mat-label>Admin account (only for testing)</mat-label>
+      </mat-checkbox>
           
           
-          <button mat-raised-button (click)="onSubmit()">Register</button>
+      <button mat-raised-button (click)="onSubmit()">Register</button>
           
        
     </form>

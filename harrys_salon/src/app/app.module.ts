@@ -16,6 +16,7 @@ import { LoginInputComponent } from './login/login-input/login-input.component';
 import { RegisterInputComponent } from './register/register-input/register-input.component';
 import { AngularFireModule} from "@angular/fire"
 import { AngularFirestoreModule} from "@angular/fire/firestore";
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 import { environment } from 'src/environments/environment';
@@ -68,6 +69,7 @@ import { HairdressersTableComponent } from './admin/hairdressers/hairdressers-ta
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatCheckboxModule,
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
   bootstrap: [AppComponent],

@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase/app';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-register-input',
@@ -16,9 +17,10 @@ export class RegisterInputComponent implements OnInit {
     firstname: new FormControl(''),
     lastname: new FormControl(''),
     password: new FormControl(''),
+    isAdmin: new FormControl(false),
   });
 
-  constructor(private db: AngularFirestore, public auth: AngularFireAuth) {}
+  constructor(private db: AngularFirestore, public auth: AngularFireAuth, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {}
 
@@ -30,7 +32,7 @@ export class RegisterInputComponent implements OnInit {
   async onSubmit() {
     let data = {
       id: "",
-      isAdmin: false,
+      isAdmin: this.form.controls.isAdmin.value,
       email: this.form.controls.email.value,
       firstname: this.form.controls.firstname.value,
       lastname: this.form.controls.lastname.value
@@ -46,15 +48,7 @@ export class RegisterInputComponent implements OnInit {
     .catch((error) => {
       var errorCode = error.code;
       var errorMessage = error.message;
-      //TODO Show error to user (email already used etc)
-      console.log(errorMessage);
+      this.snackBar.open(errorMessage, "close", { horizontalPosition: 'center', verticalPosition: 'top'});
     });
-    
-    console.log(
-      this.form.controls.email.value,
-      this.form.controls.firstname.value,
-      this.form.controls.lastname.value,
-      this.form.controls.password.value
-    );
   }
 }
