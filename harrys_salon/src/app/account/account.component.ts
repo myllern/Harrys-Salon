@@ -50,16 +50,17 @@ export class AccountComponent implements OnInit {
     let currUser = firebase.auth().currentUser;
     if(currUser !== null){
       //Can fail. Need to tell user if it does
-      currUser.updateEmail(this.form.controls.email.value)
+      let email = this.form.controls.email.value;
+      currUser.updateEmail(email)
       .then(() => {
-        this.db.collection("users").doc(this.user.id).update({"email": this.form.controls.email.value})
-        this.snackBar.open("You have changed your email to " + this.form.controls.email.value, "close", { horizontalPosition: 'center', verticalPosition: 'top'});
+        this.db.collection("users").doc(this.user.id).update({"email": email})
+        this.snackBar.open("You have changed your email to " + email, "close", { horizontalPosition: 'center', verticalPosition: 'top'});
       })
       .catch(error => {
         this.snackBar.open(error.message + " Your email was not updated.", "close", { horizontalPosition: 'center', verticalPosition: 'top'});
-        console.log(error)
+        console.log(error);
       });
-      this.form.controls.email.setValue("");
+        this.form.controls.email.setValue("");
     }
   }
 
@@ -84,7 +85,7 @@ export class AccountComponent implements OnInit {
       })
       .catch(error => {
         this.snackBar.open(error.message + " Your Password was not updated.", "close", { horizontalPosition: 'center', verticalPosition: 'top'});
-        console.log(error)
+        console.log(error);
       });
       this.form.controls.password.setValue("");
     }

@@ -1,3 +1,7 @@
 .mat-raised-button{
     margin-bottom: 10px;
 }
+
+.mat-card {
+    align-content: center;
+}

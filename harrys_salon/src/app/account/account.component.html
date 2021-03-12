@@ -1,28 +1,41 @@
 <div *ngIf="auth.user | async; else notLoggedIn">
-    <h1>Bookings:</h1>
-    <div *ngFor="let value of data | async">
-        <div *ngIf="checkDate(value.date.toDate())">
-            <h2>
-                {{"Date: " + (value.date.toDate() | date: 'mediumDate') + " Time: " + value.time + "-" + (+value.time + 1) + " Comment: " + value.comment + " With: " + value.hairdresser}} 
-                <button mat-raised-button color="warn" (click)="deleteBooking(value)"><i class="material-icons">delete</i></button>
-            </h2>
-        </div>
-    </div>
-    <h1>Old Bookings:</h1>
-    <div *ngFor="let value of data | async">
-        <div *ngIf="!checkDate(value.date.toDate())">
-            <h2>
-                {{"Date: " + (value.date.toDate() | date: 'mediumDate') + " Time: " + value.time + "-" + (+value.time + 1) + " Comment: " + value.comment + " With: " + value.hairdresser}}
-            </h2>
-        </div>
-    </div>
-    <div>
+    <mat-card>
+        <mat-card-header>
+            <h1>Bookings:</h1>
+        </mat-card-header>
+        <mat-card-content>
+             <div *ngFor="let value of data | async">
+                <div *ngIf="checkDate(value.date.toDate())">
+                    <h3>
+                        {{"Date: " + (value.date.toDate() | date: 'mediumDate') + " Time: " + value.time + "-" + (+value.time + 1) + " Comment: " + value.comment + " With: " + value.hairdresser}} 
+                        <button mat-raised-button color="warn" (click)="deleteBooking(value)"><i class="material-icons">delete</i></button>
+                    </h3>
+                </div>
+            </div>
+        </mat-card-content>
+        <mat-card-header>
+            <h1>Old Bookings:</h1>
+        </mat-card-header>
+        <mat-card-content>
+            <div *ngFor="let value of data | async">
+                <div *ngIf="!checkDate(value.date.toDate())">
+                    <h3>
+                        {{"Date: " + (value.date.toDate() | date: 'mediumDate') + " Time: " + value.time + "-" + (+value.time + 1) + " Comment: " + value.comment + " With: " + value.hairdresser}}
+                    </h3>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    <mat-card>
+        <mat-card-header>
         <h1>Account settings:</h1>
+        </mat-card-header>
+        <mat-card-content>
             <form [formGroup]="form">   
             <div>
             <mat-form-field appearance="fill">
                <mat-label>E-mail</mat-label>
-               <textarea matInput formControlName="email"></textarea>
+               <input matInput placeHolder="E-mail" formControlName="email">
             </mat-form-field>
             </div>
             <button mat-raised-button (click)="changeEmail()">Change email</button>
@@ -30,7 +43,7 @@
             <div>
             <mat-form-field appearance="fill">
                <mat-label>First Name</mat-label>
-               <textarea matInput formControlName="firstname"></textarea>
+               <input matInput placeholder="First Name" formControlName="firstname">
             </mat-form-field>
             </div>
             <button mat-raised-button (click)="changeFirstName()">Change firstname</button>
@@ -38,7 +51,7 @@
             <div>
             <mat-form-field appearance="fill">
                <mat-label>Last Name</mat-label>
-               <textarea matInput formControlName="lastname"></textarea>
+               <input matInput placeholder="Last Name" formControlName="lastname">
             </mat-form-field>
             </div>
             <button mat-raised-button (click)="changeLastName()">Change lastname</button>
@@ -52,8 +65,8 @@
             <button mat-raised-button (click)="changePassword()">Change password</button>
             </form>
              
-        
-    </div>
+        </mat-card-content>
+        </mat-card>
 </div>
 <ng-template #notLoggedIn>
     <h1>Please log in!</h1>
