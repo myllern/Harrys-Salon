@@ -75,11 +75,10 @@ export class AdminComponent implements OnInit {
       this.dataSerivce.sharedData.lastname
     );
 
-    this.db.collection("users", ref => ref.where("email", "==", this.dataSerivce.sharedData.email?.email)).valueChanges().subscribe(x => {
-      this.user = x[0];
       this.data = this.db.collection("bookings", ref => ref.where("user", "==", this.dataSerivce.sharedData.id)).valueChanges();
-    });
-    console.log('admin comp sharedData: ' + this.userForm.value.firstname);
+      console.log('admin comp sharedData: ' + this.dataSerivce.sharedData.id);
+
+
   }
 
   deleteBooking(value: any) {
@@ -97,6 +96,9 @@ export class AdminComponent implements OnInit {
     dag['id'] = res.id;
     this.db.collection('bookings').doc(res.id).set(dag)
     //this.event.emit(this.form);
+
+    
+  
 
   }
 
@@ -123,17 +125,5 @@ export class AdminComponent implements OnInit {
       });
     });
 
-  }
-
-
-
-  changePassword() {
-    let currUser = firebase.auth().currentUser;
-    if (currUser !== null) {
-      //Can fail because of weak pw or need recent logon. Need to tell user if it does
-      currUser
-        .updatePassword(this.form.controls.password.value)
-        .catch((error) => console.log(error));
-    }
   }
 }
