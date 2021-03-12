@@ -6,6 +6,7 @@ import {
   FormControl,
   FormGroup,
 } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-admin',
@@ -15,10 +16,11 @@ import {
 })
 export class AdminComponent implements OnInit {
 
+  recievedUser:any;
+
   data:any;
   user:any;
   userList: any[] = [];
-
   hide = true;
 
   isSlotFree: any = {
@@ -41,13 +43,31 @@ export class AdminComponent implements OnInit {
     password: new FormControl(''),
   });
 
+  initializeForm(){
+    this.form = new FormGroup({
+      email: new FormControl(''),
+      firstname: new FormControl(''),
+      lastname: new FormControl(''),
+      password: new FormControl(''),
+    });
+  }
+
   
 
-  constructor(private db: AngularFirestore, public auth: AngularFireAuth) {}
+  constructor(private db: AngularFirestore, public auth: AngularFireAuth, public dialogRef: MatDialogRef<AdminComponent>) {}
 
 
   ngOnInit(): void {
     
+  }
+
+  
+
+  recivedUser(recievedUser: any){
+    //console.log($event);
+    //this.initializeForm;
+    this.recievedUser = recievedUser;
+    console.log("recieveduser : " + this.recievedUser.firstname);
   }
 
   
@@ -68,7 +88,9 @@ export class AdminComponent implements OnInit {
 
   onSubmit() {
     //Emits 
-    console.log("on submit")
+    this.form.reset();
+    this.dialogRef.close();
+    console.log("on submit" + this.form.controls.firstname.value);
     //this.event.emit(this.form);
 
   };

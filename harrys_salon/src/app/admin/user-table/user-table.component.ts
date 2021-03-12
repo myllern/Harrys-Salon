@@ -7,8 +7,11 @@ import { MatTable } from '@angular/material/table';
 import { UserTableDataSource, UserTableItem } from './user-table-datasource';
 import {MatDialog} from '@angular/material/dialog';
 import {MatDialogConfig} from '@angular/material/dialog';
+import { MatDialogRef } from "@angular/material/dialog";
 import { AdminComponent } from '../admin.component';
 import { BookingComponent } from 'src/app/booking/booking.component';
+import { Output } from'@angular/core';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-user-table',
@@ -16,6 +19,7 @@ import { BookingComponent } from 'src/app/booking/booking.component';
   styleUrls: ['./user-table.component.css']
 })
 export class UserTableComponent implements AfterViewInit, OnInit {
+  @Output() $event = new EventEmitter<any>();
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort)
@@ -24,7 +28,6 @@ export class UserTableComponent implements AfterViewInit, OnInit {
   table!: MatTable<UserTableItem>;
   dataSource!: UserTableDataSource;
   source : any[]=[];
-
   constructor(private db: AngularFirestore, public auth: AngularFireAuth, private dialog: MatDialog) {}
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
@@ -39,18 +42,22 @@ export class UserTableComponent implements AfterViewInit, OnInit {
       this.dataSource.paginator = this.paginator;
       this.table.dataSource = this.dataSource; 
 
-    });  }
+    });  
+  
+  }
 
   ngAfterViewInit() {
     
   }
 
-  onPopUp(){
+  onPopUp(row: any){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose= false;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
     this.dialog.open(AdminComponent, dialogConfig)
-    console.log("hello pop up!")
+   // this.adminComp.getUserObject(row);
+    this.$event.emit(row);
+    console.log("hello pop up! " + row.firstname)
   }
 }

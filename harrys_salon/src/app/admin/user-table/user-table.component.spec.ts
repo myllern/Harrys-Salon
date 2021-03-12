@@ -3,7 +3,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
-
+import { AdminComponent } from "../admin.component";
 import { UserTableComponent } from './user-table.component';
 
 describe('UserTableComponent', () => {
@@ -21,7 +21,7 @@ describe('UserTableComponent', () => {
       ]
     }).compileComponents();
   }));
-  
+
 
   beforeEach(() => {
     fixture = TestBed.createComponent(UserTableComponent);
