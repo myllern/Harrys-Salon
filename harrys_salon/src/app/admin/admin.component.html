@@ -1,11 +1,13 @@
 <div *ngIf="auth.user | async; else notLoggedIn" >
 <h2>Edit user bookings:</h2>
 <h1>Bookings:</h1>
+    <div class='scroll' >
     <div *ngFor="let value of data | async">
-        <h2>
+        <h4>
             {{"Date: " + (value.date.toDate() | date: 'mediumDate') + " Time: " + value.time + "-" + (+value.time + 1) + " Comment: " + value.comment + " With: " + value.hairdresser}} 
             <button mat-raised-button color="warn" (click)="deleteBooking(value)"><i class="material-icons">delete</i></button>
-        </h2>
+        </h4>
+    </div>
     </div>
 
     <form [formGroup]="form">
