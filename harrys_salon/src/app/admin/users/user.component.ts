@@ -76,7 +76,6 @@ export class UserComponent implements OnInit {
     );
 
       this.data = this.db.collection("bookings", ref => ref.where("user", "==", this.dataSerivce.sharedData.id)).valueChanges();
-      console.log('admin comp sharedData: ' + this.dataSerivce.sharedData.id);
 
 
   }
@@ -88,7 +87,6 @@ export class UserComponent implements OnInit {
   onSubmit() {
     //Emits
     //this.dialogRef.close();
-    //console.log('on submit' + this.form.value.date);
     let dag = this.form.value;
 
     dag.user = this.dataSerivce.sharedData.id;
