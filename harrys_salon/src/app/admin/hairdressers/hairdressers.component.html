@@ -4,10 +4,13 @@
 
 <div class='scroll' >
          <div *ngFor="let value of data | async ">
+            <div *ngIf="checkDate(value.date.toDate())">
+
         <h5>
             {{"Date: " + (value.date.toDate() | date: 'mediumDate') + " Time: " + value.time + "-" + (+value.time + 1) + " Comment: " + value.comment + " With: " + value.hairdresser}} 
             <button mat-raised-button color="warn" (click)="deleteBooking(value)"><i class="material-icons">delete</i></button>
         </h5>
+            </div>
     </div>
     </div>
     <h3>Old Bookings:</h3>
