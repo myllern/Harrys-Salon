@@ -39,7 +39,7 @@ export class RegisterInputComponent implements OnInit {
     firebase.auth().createUserWithEmailAndPassword(data.email, this.form.controls.password.value)
     .then((userCredential) => {
       var user = userCredential.user;
-      const res = this.db.collection('users').doc().ref;
+      const res = this.db.collection('users').doc(user?.uid).ref;
       data['id'] = res.id;
       this.db.collection('users').doc(res.id).set(data);
     })
