@@ -5,6 +5,7 @@ import firebase from 'firebase/app';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { DataService } from 'src/app/data.service';
+import {MatSortModule  } from "@angular/material/sort";
 
 @Component({
   selector: 'app-hairdressers',
@@ -49,13 +50,20 @@ export class HairdressersComponent implements OnInit {
       });
 
       this.data = this.db.collection("bookings", ref => ref.where("hairdresser", "==", this.dataSerivce.haridresser.name)).valueChanges();
-
-
   }
 
+  
   deleteBooking(value: any) {
     this.db.collection('bookings').doc(value.id).delete();
   }
+
+  checkDate(date: Date){
+    return date > new Date();
+  }
+
+ 
+
+
 
 
   onBookChange(chosenDresser: any) {

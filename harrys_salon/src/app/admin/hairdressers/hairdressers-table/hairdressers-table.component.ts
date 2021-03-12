@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import {MatSortModule  } from "@angular/material/sort";
 import { MatTable } from '@angular/material/table';
 import {MatDialog} from '@angular/material/dialog';
 import {MatDialogConfig} from '@angular/material/dialog';

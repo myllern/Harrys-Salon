@@ -99,7 +99,9 @@ export class UserComponent implements OnInit {
   
 
   }
-
+  checkDate(date: Date){
+    return date > new Date();
+  }
   onBookChange(chosenDresser: any) {
     this.chosenDresser = chosenDresser.value;
   }

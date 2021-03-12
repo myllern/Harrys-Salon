@@ -1,15 +1,27 @@
 <div *ngIf="auth.user | async; else notLoggedIn" >
 <h2>Edit user bookings:</h2>
-<h1>Bookings:</h1>
+<h3>Bookings:</h3>
+
     <div class='scroll' >
     <div *ngFor="let value of data | async">
-        <h4>
+        <h5>
             {{"Date: " + (value.date.toDate() | date: 'mediumDate') + " Time: " + value.time + "-" + (+value.time + 1) + " Comment: " + value.comment + " With: " + value.hairdresser}} 
             <button mat-raised-button color="warn" (click)="deleteBooking(value)"><i class="material-icons">delete</i></button>
-        </h4>
+        </h5>
     </div>
     </div>
+    
+    <div class='scroll' >
 
+    <h3>Old Bookings:</h3>
+            <div *ngFor="let value of data | async">
+                <div *ngIf="!checkDate(value.date.toDate())">
+                    <h5>
+                        {{"Date: " + (value.date.toDate() | date: 'mediumDate') + " Time: " + value.time + "-" + (+value.time + 1) + " Comment: " + value.comment + " With: " + value.hairdresser}}
+                    </h5>
+                </div>
+            </div>
+    </div>
     <form [formGroup]="form">
         <h2> Choose a hairdresser</h2>
         <mat-form-field appearance="fill">

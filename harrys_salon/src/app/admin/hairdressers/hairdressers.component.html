@@ -1,13 +1,24 @@
 <div *ngIf="auth.user | async; else notLoggedIn" >
 <h2>Edit user bookings:</h2>
-<h1>Bookings:</h1>
-    <div class='scroll' >
-    <div *ngFor="let value of data | async">
-        <h4>
+<h3>Bookings:</h3>
+
+<div class='scroll' >
+         <div *ngFor="let value of data | async ">
+        <h5>
             {{"Date: " + (value.date.toDate() | date: 'mediumDate') + " Time: " + value.time + "-" + (+value.time + 1) + " Comment: " + value.comment + " With: " + value.hairdresser}} 
             <button mat-raised-button color="warn" (click)="deleteBooking(value)"><i class="material-icons">delete</i></button>
-        </h4>
+        </h5>
     </div>
+    </div>
+    <h3>Old Bookings:</h3>
+    <div class='scroll' >
+            <div *ngFor="let value of data | async">
+                <div *ngIf="!checkDate(value.date.toDate())">
+                    <h5>
+                        {{"Date: " + (value.date.toDate() | date: 'mediumDate') + " Time: " + value.time + "-" + (+value.time + 1) + " Comment: " + value.comment + " With: " + value.hairdresser}}
+                    </h5>
+                </div>
+            </div>
     </div>
            
            <!--- passing the form to module and indirect to parent-->
