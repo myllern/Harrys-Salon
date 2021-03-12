@@ -49,7 +49,6 @@ export class HairdressersComponent implements OnInit {
       });
 
       this.data = this.db.collection("bookings", ref => ref.where("hairdresser", "==", this.dataSerivce.haridresser.name)).valueChanges();
-      console.log('admin comp sharedData: ' + this.dataSerivce.haridresser.name);
 
 
   }
@@ -58,17 +57,6 @@ export class HairdressersComponent implements OnInit {
     this.db.collection('bookings').doc(value.id).delete();
   }
 
-  onSubmit() {
-    //Emits
-    //this.dialogRef.close();
-    //console.log('on submit' + this.form.value.date);
-
-    //this.event.emit(this.form);
-
-    
-  
-
-  }
 
   onBookChange(chosenDresser: any) {
     this.chosenDresser = chosenDresser.value;

@@ -36,7 +36,6 @@ export class UserTableComponent implements AfterViewInit, OnInit {
 
   ngOnInit() {
     this.db.collectionGroup('users').valueChanges().subscribe((data) => {
-      //console.log(data)
       this.source = data
       this.dataSource = new UserTableDataSource(data)
       this.dataSource.sort = this.sort;
@@ -60,6 +59,5 @@ export class UserTableComponent implements AfterViewInit, OnInit {
    // this.adminComp.getUserObject(row);
    
     this.dataService.sharedData = row;
-    console.log("hello pop up! " + row.firstname)
   }
 }

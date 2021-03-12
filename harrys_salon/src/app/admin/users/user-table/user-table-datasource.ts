@@ -32,7 +32,6 @@ export class UserTableDataSource extends DataSource<UserTableItem> {
   constructor(data: any[]) {
     super();
     this.data = data;
-    console.log(this.data)
   }
 
   /**

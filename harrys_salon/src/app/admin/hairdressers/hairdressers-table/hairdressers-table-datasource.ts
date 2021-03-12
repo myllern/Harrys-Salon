@@ -29,7 +29,6 @@ export class HairdressersTableDataSource extends DataSource<HairdressersTableIte
   constructor(data: any[]) {
     super();
     this.data = data;
-    console.log(this.data)
   }
 
   /**

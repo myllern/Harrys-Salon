@@ -36,7 +36,6 @@ export class HairdressersTableComponent implements AfterViewInit, OnInit {
 
   ngOnInit() {
     this.db.collectionGroup('hairdressers').valueChanges().subscribe((data) => {
-      //console.log(data)
       this.source = data
       this.dataSource = new HairdressersTableDataSource(data)
       this.dataSource.sort = this.sort;
@@ -60,6 +59,5 @@ export class HairdressersTableComponent implements AfterViewInit, OnInit {
    // this.adminComp.getUserObject(row);
    
     this.dataService.haridresser = row;
-    console.log("hello pop up! " + row.name)
   }
 }
