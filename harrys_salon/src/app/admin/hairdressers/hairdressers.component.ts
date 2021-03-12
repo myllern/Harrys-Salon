@@ -5,7 +5,7 @@ import firebase from 'firebase/app';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { DataService } from 'src/app/data.service';
-import {MatSortModule  } from "@angular/material/sort";
+import { MatSortModule } from '@angular/material/sort';
 
 @Component({
   selector: 'app-hairdressers',
@@ -32,7 +32,6 @@ export class HairdressersComponent implements OnInit {
   chosenDresser: any;
   hairDressers: any;
 
-
   constructor(
     private db: AngularFirestore,
     public auth: AngularFireAuth,
@@ -49,27 +48,24 @@ export class HairdressersComponent implements OnInit {
         this.hairDressers = data;
       });
 
-      this.data = this.db.collection("bookings", ref => ref.where("hairdresser", "==", this.dataSerivce.haridresser.name)).valueChanges();
+    this.data = this.db
+      .collection('bookings', (ref) =>
+        ref.where('hairdresser', '==', this.dataSerivce.haridresser.name).orderBy('date')
+      ).valueChanges();
   }
 
-  
   deleteBooking(value: any) {
     this.db.collection('bookings').doc(value.id).delete();
   }
 
-  checkDate(date: Date){
+  checkDate(date: Date) {
     return date > new Date();
   }
-
- 
-
-
-
 
   onBookChange(chosenDresser: any) {
     this.chosenDresser = chosenDresser.value;
   }
-  
+
   toggleChosenDay(chosenDate: any) {
     this.isSlotFree = {
       '09': true,
@@ -79,15 +75,19 @@ export class HairdressersComponent implements OnInit {
       '13': true,
     };
 
-    this.db.collectionGroup('bookings').valueChanges().subscribe((data) => {
-      data.forEach((bookingDate: any) => {
-
-        if ((bookingDate.date.toDate().toString() === chosenDate.value.toString()) && (this.chosenDresser === bookingDate.hairdresser)) {
-          this.isSlotFree[bookingDate.time] = false;;
-
-        }
+    this.db
+      .collectionGroup('bookings')
+      .valueChanges()
+      .subscribe((data) => {
+        data.forEach((bookingDate: any) => {
+          if (
+            bookingDate.date.toDate().toString() ===
+              chosenDate.value.toString() &&
+            this.chosenDresser === bookingDate.hairdresser
+          ) {
+            this.isSlotFree[bookingDate.time] = false;
+          }
+        });
       });
-    });
-
   }
 }
