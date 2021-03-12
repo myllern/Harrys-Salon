@@ -8,13 +8,18 @@
     <a routerLink="/home">
       <div> Welcome to the {{title}}</div>
     </a>
-    <div>
-      <button mat-button routerLink="/login">Login</button>
-      <button mat-button routerLink="/register">Register</button>
+    <div *ngIf="auth.user | async; else showLogin">
       <button mat-button routerLink="/booking">Booking</button>
       <button mat-button routerLink="/account">My account</button>
       <button mat-button routerLink="/admin">Admin Page</button>
     </div>
+    <ng-template #showLogin>
+    <div>
+      <button mat-button routerLink="/login">Login</button>
+      <button mat-button routerLink="/register">Register</button>
+      <button mat-button routerLink="/booking">Booking</button>
+    </div>
+    </ng-template>
   </mat-toolbar>
 
   <router-outlet></router-outlet>

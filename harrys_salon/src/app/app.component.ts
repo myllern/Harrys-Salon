@@ -13,6 +13,11 @@ export class AppComponent {
   constructor(private db: AngularFirestore, public auth: AngularFireAuth) { };
 
   ngOnInit() {
+    this.auth.user.subscribe(user => {
+      if(user) {
+        this.data = this.db.collection("bookings", ref => ref.where("user", "==", user?.email)).valueChanges();
+      }
+    });
   }
 
   logout() {
