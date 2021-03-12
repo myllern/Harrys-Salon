@@ -8,6 +8,7 @@ import {
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase/app';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login-input',
@@ -22,7 +23,7 @@ export class LoginInputComponent implements OnInit {
     //password2: new FormControl('', [Validators.required, Validators.min(3)]),
   });
 data:any
-  constructor(private db: AngularFirestore, public auth: AngularFireAuth) {}
+  constructor(private db: AngularFirestore, public auth: AngularFireAuth, private snackbar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.auth.user.subscribe(user => {
@@ -46,6 +47,7 @@ data:any
       var errorCode = error.code;
       var errorMessage = error.message;
       //TODO Show error to user (wrong password etc)
+      this.snackbar.open(errorMessage, "Close", { duration: 2000, horizontalPosition: 'center', verticalPosition: 'top'});
       console.log(errorMessage);
     });
   }

@@ -79,7 +79,9 @@ export class AccountComponent implements OnInit {
     let currUser = firebase.auth().currentUser;
     if(currUser !== null){
       //Can fail because of weak pw or need recent logon. Need to tell user if it does
-      currUser.updatePassword(this.form.controls.password.value)
+      currUser.updatePassword(this.form.controls.password.value).then(() => {
+        this.snackBar.open("You have updated your password.", "close", { horizontalPosition: 'center', verticalPosition: 'top'})
+      })
       .catch(error => {
         this.snackBar.open(error.message + " Your Password was not updated.", "close", { horizontalPosition: 'center', verticalPosition: 'top'});
         console.log(error)
