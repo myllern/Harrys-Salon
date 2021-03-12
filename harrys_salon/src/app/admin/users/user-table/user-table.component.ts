@@ -8,11 +8,11 @@ import { UserTableDataSource, UserTableItem } from './user-table-datasource';
 import {MatDialog} from '@angular/material/dialog';
 import {MatDialogConfig} from '@angular/material/dialog';
 import { MatDialogRef } from "@angular/material/dialog";
-import { AdminComponent } from '../admin.component';
 import { BookingComponent } from 'src/app/booking/booking.component';
 import { Output } from'@angular/core';
 import { EventEmitter } from '@angular/core';
 import { DataService } from 'src/app/data.service';
+import { UserComponent } from '../user.component';
 
 @Component({
   selector: 'app-user-table',
@@ -56,8 +56,9 @@ export class UserTableComponent implements AfterViewInit, OnInit {
     dialogConfig.disableClose= false;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
-    this.dialog.open(AdminComponent, dialogConfig)
+    this.dialog.open(UserComponent, dialogConfig)
    // this.adminComp.getUserObject(row);
+   
     this.dataService.sharedData = row;
     console.log("hello pop up! " + row.firstname)
   }

@@ -20,11 +20,14 @@ import { AngularFirestoreModule} from "@angular/fire/firestore";
 
 import { environment } from 'src/environments/environment';
 import { AccountComponent } from './account/account.component';
-import { AdminComponent } from './admin/admin.component';
-import { UserTableComponent } from './admin/user-table/user-table.component';
+import { UserTableComponent } from './admin/users/user-table/user-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { UserComponent } from './admin/users/user.component';
+import { AdminComponent } from './admin/admin.component';
+import { HairdressersComponent } from './admin/hairdressers/hairdressers.component';
+import { HairdressersTableComponent } from './admin/hairdressers/hairdressers-table/hairdressers-table.component';
 
 @NgModule({
   declarations: [
@@ -38,8 +41,11 @@ import { MatSortModule } from '@angular/material/sort';
     LoginInputComponent,
     RegisterInputComponent,
     AccountComponent,
-    AdminComponent,
-    UserTableComponent
+    UserTableComponent,
+    UserComponent,
+    HairdressersComponent,
+    HairdressersTableComponent,
+    AdminComponent
 
   ],
   imports: [
@@ -57,7 +63,7 @@ import { MatSortModule } from '@angular/material/sort';
       { path: 'register', component: RegisterComponent },
       { path: 'booking', component: BookingComponent },
       { path: 'account', component: AccountComponent },
-      { path: 'admin', component: UserTableComponent }
+      { path: 'admin', component: AdminComponent }
     ]),
     MatTableModule,
     MatPaginatorModule,
