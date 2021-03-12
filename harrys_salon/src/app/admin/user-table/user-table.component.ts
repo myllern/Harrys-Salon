@@ -12,6 +12,7 @@ import { AdminComponent } from '../admin.component';
 import { BookingComponent } from 'src/app/booking/booking.component';
 import { Output } from'@angular/core';
 import { EventEmitter } from '@angular/core';
+import { DataService } from 'src/app/data.service';
 
 @Component({
   selector: 'app-user-table',
@@ -28,7 +29,7 @@ export class UserTableComponent implements AfterViewInit, OnInit {
   table!: MatTable<UserTableItem>;
   dataSource!: UserTableDataSource;
   source : any[]=[];
-  constructor(private db: AngularFirestore, public auth: AngularFireAuth, private dialog: MatDialog) {}
+  constructor(private db: AngularFirestore, public auth: AngularFireAuth, private dialog: MatDialog, private dataService: DataService ) {}
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['email', 'firstname', 'lastname', 'actions'];
@@ -57,7 +58,7 @@ export class UserTableComponent implements AfterViewInit, OnInit {
     dialogConfig.width = "60%";
     this.dialog.open(AdminComponent, dialogConfig)
    // this.adminComp.getUserObject(row);
-    this.$event.emit(row);
+    this.dataService.sharedData = row;
     console.log("hello pop up! " + row.firstname)
   }
 }
