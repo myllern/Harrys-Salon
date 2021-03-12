@@ -11,7 +11,7 @@
     <div *ngIf="auth.user | async; else showLogin">
       <button mat-button routerLink="/booking">Booking</button>
       <button mat-button routerLink="/account">My account</button>
-      <button mat-button routerLink="/admin">Admin Page</button>
+      <button *ngIf="(user | async)?.isAdmin" mat-button routerLink="/admin">Admin Page</button>
     </div>
     <ng-template #showLogin>
     <div>

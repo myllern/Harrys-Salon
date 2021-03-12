@@ -41,7 +41,7 @@ data:any
     firebase.auth().signInWithEmailAndPassword(this.form.controls.email.value, this.form.controls.password.value)
     .then((userCredential) => {
       var user = userCredential.user;
-      console.log(user);
+      //console.log(user);
     })
     .catch((error) => {
       var errorCode = error.code;
